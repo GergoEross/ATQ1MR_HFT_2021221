@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATQ1MR_HFT_2021221.Models.Entities
 {
-    class Motherboard
+    public class Motherboard
     {
     }
 }
