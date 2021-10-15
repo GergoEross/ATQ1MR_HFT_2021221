@@ -20,11 +20,12 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         [Required]
         [MaxLength(25)]
         public string Name { get; set; }
-        public int BaseClock { get; set; }
-        public int BoostClock { get; set; }
+        public double BaseClock { get; set; }
+        public double BoostClock { get; set; }
         public int Cores { get; set; }
         public int Threads { get; set; }
         public int Price { get; set; }
+        public int BrandId { get; set; }
         [NotMapped]
         public virtual PBrand Brand { get; set; }
 

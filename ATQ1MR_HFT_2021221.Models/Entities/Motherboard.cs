@@ -24,6 +24,7 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         [Required]
         [MaxLength(15)]
         public string Socket { get; set; }
+        public int BrandId { get; set; }
         [NotMapped]
         public virtual MBrand Brand { get; set; }
     }
