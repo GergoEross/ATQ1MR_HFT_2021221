@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ATQ1MR_HFT_2021221.Repository.Interfaces
 {
-    interface IRepositoryBase
+    public interface IRepositoryBase<TEntity, TKey>
     {
+        IQueryable<TEntity> ReadAll();
+        TEntity Read(TKey id);
+        TEntity Creat(TEntity entity);
+        TEntity Update(TEntity entity);
+        void Delet(TKey id);
     }
 }

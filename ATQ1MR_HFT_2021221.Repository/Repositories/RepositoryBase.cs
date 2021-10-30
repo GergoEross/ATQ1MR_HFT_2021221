@@ -1,12 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ATQ1MR_HFT_2021221.Data;
+using ATQ1MR_HFT_2021221.Repository.Interfaces;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATQ1MR_HFT_2021221.Repository
 {
-    class RepositoryBase
+    public abstract class RepositoryBase<TEntity, TKey> : IRepositoryBase<TEntity, TKey> where TEntity : class
     {
+        protected PcPartsDbContext Context;
+        public RepositoryBase(PcPartsDbContext context)
+        {
+            Context = context;
+        }
+
+        public IQueryable<TEntity> ReadAll()
+        {
+            return Context.Set<TEntity>();
+        }
+        public abstract TEntity Read(TKey id);
+
+        public TEntity Creat(TEntity entity)
+        {
+            var result = Context.Add(entity);
+            Context.SaveChanges();
+            return result.Entity;
+        }
+        public TEntity Update(TEntity entity)
+        {
+            var result = Context.Update(entity);
+            Context.SaveChanges();
+            return result.Entity;
+        }
+
+        public void Delet(TKey id)
+        {
+            Context.Remove(Read(id));
+            Context.SaveChanges();
+        }
+
+
+
     }
 }
