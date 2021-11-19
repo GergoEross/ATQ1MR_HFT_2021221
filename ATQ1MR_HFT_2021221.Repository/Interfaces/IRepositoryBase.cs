@@ -10,8 +10,8 @@ namespace ATQ1MR_HFT_2021221.Repository.Interfaces
     {
         IQueryable<TEntity> ReadAll();
         TEntity Read(TKey id);
-        TEntity Creat(TEntity entity);
+        TEntity Create(TEntity entity);
         TEntity Update(TEntity entity);
-        void Delet(TKey id);
+        void Delete(TKey id);
     }
 }

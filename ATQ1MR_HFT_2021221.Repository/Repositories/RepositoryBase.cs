@@ -18,7 +18,7 @@ namespace ATQ1MR_HFT_2021221.Repository
         }
         public abstract TEntity Read(TKey id);
 
-        public TEntity Creat(TEntity entity)
+        public TEntity Create(TEntity entity)
         {
             var result = Context.Add(entity);
             Context.SaveChanges();
@@ -31,7 +31,7 @@ namespace ATQ1MR_HFT_2021221.Repository
             return result.Entity;
         }
 
-        public void Delet(TKey id)
+        public void Delete(TKey id)
         {
             Context.Remove(Read(id));
             Context.SaveChanges();
