@@ -14,6 +14,14 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         IMBrandRepository _mBrandRepository;
         IMotherboardRepository _motherboardRepository;
         IProcessorRepository _processorRepository;
+
+        public MBrandLogic(IMBrandRepository mBrandRepository, IMotherboardRepository motherboardRepository, IProcessorRepository processorRepository)
+        {
+            _mBrandRepository = mBrandRepository;
+            _motherboardRepository = motherboardRepository;
+            _processorRepository = processorRepository;
+        }
+
         public IList<MBrand> ReadAll()
         {
             return _mBrandRepository.ReadAll().ToList();

@@ -32,13 +32,29 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         }
         public Motherboard Create(Motherboard entity)
         {
-            var result = _motherboardRepository.Create(entity);
-            return result;
+            var v = _motherboardRepository.Read(entity.Id);
+            if (v == null)
+            {
+                var result = _motherboardRepository.Create(entity);
+                return result;
+            }
+            else
+            {
+                throw new Exception("Already exists!");
+            }
         }
         public Motherboard Update(Motherboard entity)
         {
-            var result = _motherboardRepository.Update(entity);
-            return result;
+            var v = _motherboardRepository.Read(entity.Id);
+            if (v != null)
+            {
+                var result = _motherboardRepository.Update(entity);
+                return result;
+            }
+            else
+            {
+                throw new Exception("No entity found!");
+            }
         }
         public void Delete(int id)
         {
