@@ -16,5 +16,6 @@ namespace ATQ1MR_HFT_2021221.Logic.Intefaces
         Motherboard Update(Motherboard entity);
         void Delete(int id);
         IEnumerable<MotherboardWhitProcessorsModel> MotherboardsWhitItsProcessors();
+        IEnumerable<MotherboardPAvarage> MotherboardProcessorAvaragePrices(int id);
     }
 }

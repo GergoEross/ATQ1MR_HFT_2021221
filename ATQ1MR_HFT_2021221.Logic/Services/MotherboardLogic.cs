@@ -81,7 +81,28 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                           Processors = processors.OrderByDescending(x => x.Price).ToList()
                       };
 
-            return result;
+            return result.ToList();
+        }
+
+        public IEnumerable<MotherboardPAvarage> MotherboardProcessorAvaragePrices()
+        {
+            var motherboards = _motherboardRepository.ReadAll();
+            var processors = _processorRepository.ReadAll();
+            var mBrands = _mBrandRepository.ReadAll();
+
+            var result = from motherboar in motherboards
+                         join brand in mBrands
+                         on motherboar.BrandId equals brand.Id
+                         join processor in processors
+                         on motherboar.Socket equals processor.Socket
+                         select new MotherboardPAvarage
+                         {
+                             Chipset = motherboar.Chipset,
+                             Type = motherboar.Type,
+                             Brand = brand.Name,
+                             Avarage = processors.Average(x => x.Price)
+                         };
+            return result.ToList();
         }
     }
 }
