@@ -1,4 +1,5 @@
 ﻿using ATQ1MR_HFT_2021221.Logic.Intefaces;
+using ATQ1MR_HFT_2021221.Logic.Models;
 using ATQ1MR_HFT_2021221.Models.Entities;
 using ATQ1MR_HFT_2021221.Repository.Interfaces;
 using System;
@@ -59,6 +60,28 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         public void Delete(int id)
         {
             _motherboardRepository.Delete(id);
+        }
+
+        public IEnumerable<MotherboardWhitProcessorsModel> MotherboardsWhitItsProcessors()
+        {
+            var processors = _processorRepository.ReadAll();
+            var motherboards = _motherboardRepository.ReadAll();
+            var mBrands = _mBrandRepository.ReadAll();
+
+            var result = from motherboar in motherboards
+                         join brand in mBrands
+                         on motherboar.BrandId equals brand.Id
+                      join processor in processors
+                      on motherboar.Socket equals processor.Socket
+                      select new MotherboardWhitProcessorsModel
+                      {
+                          Chipset = motherboar.Chipset,
+                          Type = motherboar.Type,
+                          Brand = brand.Name,
+                          Processors = processors.OrderByDescending(x => x.Price).ToList()
+                      };
+
+            return result;
         }
     }
 }

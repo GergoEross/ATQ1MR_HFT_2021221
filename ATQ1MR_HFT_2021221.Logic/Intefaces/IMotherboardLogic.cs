@@ -1,4 +1,5 @@
-﻿using ATQ1MR_HFT_2021221.Models.Entities;
+﻿using ATQ1MR_HFT_2021221.Logic.Models;
+using ATQ1MR_HFT_2021221.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace ATQ1MR_HFT_2021221.Logic.Intefaces
         Motherboard Create(Motherboard entity);
         Motherboard Update(Motherboard entity);
         void Delete(int id);
+        IEnumerable<MotherboardWhitProcessorsModel> MotherboardsWhitItsProcessors();
     }
 }
