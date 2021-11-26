@@ -87,7 +87,7 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                        select new
                        {
                            Socket = g.Key,
-                           Processors = g.Select(x => x).OrderByDescending(x => x.Price)
+                           Processors = g.Select(x => x).OrderByDescending(x => x.Price).ToList()
                        };
 
             var result = from motherboar in motherboards
@@ -100,7 +100,7 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                           Chipset = motherboar.Chipset,
                           Type = motherboar.Type,
                           Brand = brand.Name,
-                          Processors = (List<Processor>)processor.Processors
+                          Processors = processor.Processors
                       };
 
             return result.ToList();

@@ -13,5 +13,17 @@ namespace ATQ1MR_HFT_2021221.Logic.Models
         public string Chipset;
         public string Brand;
         public List<Processor> Processors;
+        public override bool Equals(object obj)
+        {
+            var other = obj as MotherboardWhitProcessorsModel;
+            if (other == null)
+            {
+                return false;
+            }
+            else
+            {
+                return other.Brand == Brand && other.Chipset == Chipset && other.Type == Type && other.Processors.SequenceEqual(Processors);
+            }
+        }
     }
 }

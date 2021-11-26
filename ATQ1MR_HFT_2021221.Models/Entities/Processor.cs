@@ -28,6 +28,19 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         public int BrandId { get; set; }
         [NotMapped]
         public virtual PBrand Brand { get; set; }
+        public override bool Equals(object obj)
+        {
+            var other = obj as Processor;
+            if (other == null)
+            {
+                return false;
+            }
+            else
+            {
+                return other.Id == Id && other.Socket == Socket && other.Name == Name && other.BaseClock == BaseClock && other.BoostClock == BoostClock 
+                    && other.Cores == Cores && other.Threads == Threads && other.Price == Price && other.BrandId == BrandId;
+            }
+        }
 
     }
 }
