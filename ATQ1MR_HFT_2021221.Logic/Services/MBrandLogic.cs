@@ -32,29 +32,43 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         }
         public MBrand Create(MBrand entity)
         {
-            var v = _mBrandRepository.Read(entity.Id);
-            if (v == null)
+            if (entity != null && entity.Name != "")
             {
-                var result = _mBrandRepository.Create(entity);
-                return result;
+                var v = _mBrandRepository.Read(entity.Id);
+                if (v == null)
+                {
+                    var result = _mBrandRepository.Create(entity);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("Already exists!");
+                }
             }
             else
             {
-                throw new Exception("Already exists!");
+                throw new Exception("Must contain the required data!");
             }
         }
         public MBrand Update(MBrand entity)
         {
-            var v = _mBrandRepository.Read(entity.Id);
-            if (v != null)
+            if (entity != null)
             {
-                var result = _mBrandRepository.Update(entity);
-                return result;
+                var v = _mBrandRepository.Read(entity.Id);
+                if (v != null)
+                {
+                    var result = _mBrandRepository.Update(entity);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("No entity found!");
+                }
             }
             else
             {
-                throw new Exception("No entity found!");
-            }   
+                throw new Exception("Must contain data!");
+            }
         }
         public void Delete(int id)
         {
