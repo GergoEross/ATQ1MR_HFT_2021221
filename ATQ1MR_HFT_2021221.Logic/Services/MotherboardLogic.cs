@@ -145,7 +145,7 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                             {
                                 Socket = processor.Socket,
                                 Name = processor.Name,
-                                PPP = processor.Price / processor.Cores * (double)((processor.BaseClock + processor.BoostClock) / 2)
+                                PPP = processor.Price / (processor.Cores * ((processor.BaseClock + processor.BoostClock) / 2))
                             };
             var ordered = from proc in procppps
                          group proc by proc.Socket into g
