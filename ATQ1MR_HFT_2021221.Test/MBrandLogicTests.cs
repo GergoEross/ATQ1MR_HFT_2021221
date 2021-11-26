@@ -37,8 +37,6 @@ namespace ATQ1MR_HFT_2021221.Test
             //Arrange
             var mBrandRepo = new Mock<IMBrandRepository>();
 
-            mBrandRepo.Setup(x => x.Create(null)).Throws<Exception>();
-
             var logic = new MBrandLogic(mBrandRepo.Object, null, null);
             //Act
             var result = Assert.Throws(typeof(Exception), () => logic.Create(null));
@@ -86,8 +84,6 @@ namespace ATQ1MR_HFT_2021221.Test
         {
             //Arrange
             var mBrandRepo = new Mock<IMBrandRepository>();
-
-            mBrandRepo.Setup(x => x.Update(null)).Throws<Exception>();
 
             var logic = new MBrandLogic(mBrandRepo.Object, null, null);
             //Act

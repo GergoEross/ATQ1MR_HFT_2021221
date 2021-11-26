@@ -37,8 +37,6 @@ namespace ATQ1MR_HFT_2021221.Test
             //Arrange
             var processorRepo = new Mock<IProcessorRepository>();
 
-            processorRepo.Setup(x => x.Create(null)).Throws<Exception>();
-
             var logic = new ProcessorLogic(null, null, processorRepo.Object);
             //Act
             var result = Assert.Throws(typeof(Exception), () => logic.Create(null));
@@ -86,8 +84,6 @@ namespace ATQ1MR_HFT_2021221.Test
         {
             //Arrange
             var processorRepo = new Mock<IProcessorRepository>();
-
-            processorRepo.Setup(x => x.Update(null)).Throws<Exception>();
 
             var logic = new ProcessorLogic(null, null, processorRepo.Object);
             //Act
