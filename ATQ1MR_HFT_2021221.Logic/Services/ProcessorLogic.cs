@@ -32,28 +32,42 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         }
         public Processor Create(Processor entity)
         {
-            var v = _processorRepository.Read(entity.Id);
-            if (v == null)
+            if (entity != null && entity.Name != "")
             {
-                var result = _processorRepository.Create(entity);
-                return result;
+                var v = _processorRepository.Read(entity.Id);
+                if (v == null)
+                {
+                    var result = _processorRepository.Create(entity);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("Already exists!");
+                }
             }
             else
             {
-                throw new Exception("Already exists!");
+                throw new Exception("Must contain the required data!");
             }
         }
         public Processor Update(Processor entity)
         {
-            var v = _processorRepository.Read(entity.Id);
-            if (v != null)
+            if (entity != null)
             {
-                var result = _processorRepository.Update(entity);
-                return result;
+                var v = _processorRepository.Read(entity.Id);
+                if (v != null)
+                {
+                    var result = _processorRepository.Update(entity);
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("No entity found!");
+                }
             }
             else
             {
-                throw new Exception("No entity found!");
+                throw new Exception("Must contain data!");
             }
         }
         public void Delete(int id)
