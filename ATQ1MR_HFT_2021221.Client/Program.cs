@@ -7,6 +7,7 @@ namespace ATQ1MR_HFT_2021221.Client
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.ReadLine();
         }
     }
 }

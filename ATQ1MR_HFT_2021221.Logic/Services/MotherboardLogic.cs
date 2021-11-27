@@ -1,6 +1,7 @@
 ﻿using ATQ1MR_HFT_2021221.Logic.Intefaces;
-using ATQ1MR_HFT_2021221.Logic.Models;
+
 using ATQ1MR_HFT_2021221.Models.Entities;
+using ATQ1MR_HFT_2021221.Models.Models;
 using ATQ1MR_HFT_2021221.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -78,9 +79,9 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
 
         public IEnumerable<MotherboardWhitProcessorsModel> MotherboardsWhitItsProcessors()
         {
-            var processors = _processorRepository.ReadAll();
-            var motherboards = _motherboardRepository.ReadAll();
-            var mBrands = _mBrandRepository.ReadAll();
+            var processors = _processorRepository.ReadAll().ToList();
+            var motherboards = _motherboardRepository.ReadAll().ToList();
+            var mBrands = _mBrandRepository.ReadAll().ToList();
 
             var proc = from processor in processors
                        group processor by processor.Socket into g
@@ -93,15 +94,15 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
             var result = from motherboar in motherboards
                          join brand in mBrands
                          on motherboar.BrandId equals brand.Id
-                      join processor in proc
-                      on motherboar.Socket equals processor.Socket
-                      select new MotherboardWhitProcessorsModel
-                      {
-                          Chipset = motherboar.Chipset,
-                          Type = motherboar.Type,
-                          Brand = brand.Name,
-                          Processors = processor.Processors
-                      };
+                         join processor in proc
+                         on motherboar.Socket equals processor.Socket
+                         select new MotherboardWhitProcessorsModel
+                         {
+                             Chipset = motherboar.Chipset,
+                             Type = motherboar.Type,
+                             Brand = brand.Name,
+                             Processors = processor.Processors
+                         };
 
             return result.ToList();
         }
@@ -137,8 +138,8 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
 
         public IEnumerable<BestPricePerPerformaceModel> BestPPPForMotherboard(int id)
         {
-            var motherboards = _motherboardRepository.ReadAll();
-            var processors = _processorRepository.ReadAll();
+            var motherboards = _motherboardRepository.ReadAll().ToList();
+            var processors = _processorRepository.ReadAll().ToList();
 
             var procppps = from processor in processors
                             select new

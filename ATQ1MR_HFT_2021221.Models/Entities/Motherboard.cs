@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ATQ1MR_HFT_2021221.Models.Entities
 {
@@ -25,6 +26,7 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         [MaxLength(15)]
         public string Socket { get; set; }
         public int BrandId { get; set; }
+        [JsonIgnore]
         [NotMapped]
         public virtual MBrand Brand { get; set; }
     }

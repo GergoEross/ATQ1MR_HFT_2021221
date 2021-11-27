@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace ATQ1MR_HFT_2021221.Models.Entities
 {
@@ -19,6 +20,7 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         [MaxLength(25)]
         public string Name { get; set; }
 
+        [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Processor> Processors { get; set; }
     }

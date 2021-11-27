@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATQ1MR_HFT_2021221.Logic.Models
+namespace ATQ1MR_HFT_2021221.Models.Models
 {
     public class MotherboardWhitProcessorsModel
     {
-        public string Type;
-        public string Chipset;
-        public string Brand;
-        public List<Processor> Processors;
+        public string Type { get; set; }
+        public string Chipset { get; set; }
+        public string Brand { get; set; }
+        public List<Processor> Processors { get; set; }
         public override bool Equals(object obj)
         {
             var other = obj as MotherboardWhitProcessorsModel;

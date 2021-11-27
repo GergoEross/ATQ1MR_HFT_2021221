@@ -1,5 +1,5 @@
-﻿using ATQ1MR_HFT_2021221.Logic.Models;
-using ATQ1MR_HFT_2021221.Models.Entities;
+﻿using ATQ1MR_HFT_2021221.Models.Entities;
+using ATQ1MR_HFT_2021221.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

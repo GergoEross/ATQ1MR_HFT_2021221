@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATQ1MR_HFT_2021221.Logic.Models
+namespace ATQ1MR_HFT_2021221.Models.Models
 {
     public class MotherboardPAvarageModel
     {
-        public string Type;
-        public string Chipset;
-        public string Brand;
-        public double Avarage;
+        public string Type { get; set; }
+        public string Chipset { get; set; }
+        public string Brand { get; set; }
+        public double Avarage { get; set; }
         public override bool Equals(object obj)
         {
             var other = obj as MotherboardPAvarageModel;

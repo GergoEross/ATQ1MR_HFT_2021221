@@ -36,7 +36,7 @@ namespace ATQ1MR_HFT_2021221.Data
             var amd = new PBrand() { Id = 2, Name = "AMD" };
 
             var mboard1 = new Motherboard() { Id = 1, BrandId = msi.Id, Chipset = "B450", Price = 30000, Socket = "AM4", Type = "TOMAHAWK MAX" };
-            var mboard2 = new Motherboard() { Id = 2, BrandId = msi.Id, Chipset = "Z390", Price = 40000, Socket = "LGA-1151(300)", Type = "MPG GAMING PLUS" };
+            var mboard2 = new Motherboard() { Id = 2, BrandId = asus.Id, Chipset = "Z390", Price = 40000, Socket = "LGA-1151(300)", Type = "MPG GAMING PLUS" };
             var cpu1 = new Processor() { Id = 1, BrandId = amd.Id, Name = "Ryzen 5 3600", Socket = "AM4", Cores = 6, Threads = 12, BaseClock = 3.6, BoostClock = 4.2, Price = 110000 };
             var cpu2 = new Processor() { Id = 2, BrandId = intel.Id, Name = "Core i9-9900K", Socket = "LGA-1151(300)", Cores = 8, Threads = 16, BaseClock = 3.6, BoostClock = 5, Price = 134000 };
 

@@ -1,6 +1,6 @@
-﻿using ATQ1MR_HFT_2021221.Logic.Models;
-using ATQ1MR_HFT_2021221.Logic.Services;
+﻿using ATQ1MR_HFT_2021221.Logic.Services;
 using ATQ1MR_HFT_2021221.Models.Entities;
+using ATQ1MR_HFT_2021221.Models.Models;
 using ATQ1MR_HFT_2021221.Repository.Interfaces;
 using Moq;
 using NUnit.Framework;
