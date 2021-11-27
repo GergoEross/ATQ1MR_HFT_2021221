@@ -19,6 +19,7 @@ namespace ATQ1MR_HFT_2021221.Logic.Infrastructure
             services.AddScoped<IMBrandLogic, MBrandLogic>();
             services.AddScoped<IMotherboardLogic, MotherboardLogic>();
             services.AddScoped<IProcessorLogic, ProcessorLogic>();
+            services.AddScoped<IPBrandLogic, PBrandLogic>();
         }
     }
 }
