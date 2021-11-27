@@ -46,7 +46,15 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
 
         public void Delete(int id)
         {
-            _pBrandRepository.Delete(id);
+            var v = _pBrandRepository.Read(id);
+            if (v != null)
+            {
+                _pBrandRepository.Delete(id);
+            }
+            else
+            {
+                throw new Exception("No entity found!");
+            }
         }
 
         public PBrand Read(int id)

@@ -74,7 +74,15 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         }
         public void Delete(int id)
         {
-            _motherboardRepository.Delete(id);
+            var v = _motherboardRepository.Read(id);
+            if (v != null)
+            {
+                _motherboardRepository.Delete(id);
+            }
+            else
+            {
+                throw new Exception("No entity found!");
+            }
         }
 
         public IEnumerable<MotherboardWhitProcessorsModel> MotherboardsWhitItsProcessors()
