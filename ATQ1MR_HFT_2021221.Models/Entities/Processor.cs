@@ -43,6 +43,9 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
                     && other.Cores == Cores && other.Threads == Threads && other.Price == Price && other.BrandId == BrandId;
             }
         }
-
+        public override string ToString()
+        {
+            return $"Id: {Id}\nName: {Name}\nSocket: {Socket}\nBaseClock: {BaseClock}\nBoostClock: {BoostClock}\nCores: {Cores}\nThreads: {Threads}\nPrice: {Price}\nBrandId: {BrandId}";
+        }
     }
 }

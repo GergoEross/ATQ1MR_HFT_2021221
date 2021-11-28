@@ -25,5 +25,14 @@ namespace ATQ1MR_HFT_2021221.Models.Models
                 return other.Brand == Brand && other.Chipset == Chipset && other.Type == Type && other.Processors.SequenceEqual(Processors);
             }
         }
+        public override string ToString()
+        {
+            string result = "";
+            foreach (var processor in Processors)
+            {
+                result += "\n" + processor.ToString();
+            }
+            return $"Type: {Type}\nChipset: {Chipset}\nBrand: {Brand}\nProcessors:{result}";
+        }
     }
 }

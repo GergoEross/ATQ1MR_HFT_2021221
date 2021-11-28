@@ -24,5 +24,9 @@ namespace ATQ1MR_HFT_2021221.Models.Models
                 return other.Brand == Brand && other.Chipset == Chipset && other.Type == Type && other.Avarage == Avarage;
             }
         }
+        public override string ToString()
+        {
+            return $"Type: {Type}\nChipset: {Chipset}\nBrand: {Brand}\nAvarage: {Avarage}\n";
+        }
     }
 }

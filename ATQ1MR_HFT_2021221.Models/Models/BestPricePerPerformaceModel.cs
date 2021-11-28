@@ -22,5 +22,9 @@ namespace ATQ1MR_HFT_2021221.Models.Models
                 return other.ProcessorName == ProcessorName && other.PPP == PPP;
             }
         }
+        public override string ToString()
+        {
+            return $"Processor name: {ProcessorName}\nPrice/Performance: {PPP}\n";
+        }
     }
 }

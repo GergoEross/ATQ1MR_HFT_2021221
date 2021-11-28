@@ -35,6 +35,16 @@ namespace ATQ1MR_HFT_2021221.Client.Infrastructure
                 return JsonSerializer.Deserialize<List<T>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult(), serializerOptions);
             }
         }
+        public List<T> GetAll<T, TKey>(TKey id, string actionName = null)
+        {
+            using (var client = new HttpClient())
+            {
+                InitClient(client);
+
+                var response = client.GetAsync($"{GetActionName(actionName ?? nameof(GetAll))}/{id}").GetAwaiter().GetResult(); // Block here
+                return JsonSerializer.Deserialize<List<T>>(response.Content.ReadAsStringAsync().GetAwaiter().GetResult(), serializerOptions);
+            }
+        }
 
         public T Get<T, TKey>(TKey id, string actionName = null)
         {
