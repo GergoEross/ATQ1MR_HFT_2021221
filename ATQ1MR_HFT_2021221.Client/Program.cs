@@ -11,14 +11,21 @@ namespace ATQ1MR_HFT_2021221.Client
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Waiting for server..");
+            Console.WriteLine("Waiting for server...");
             Console.ReadLine();
-            Motherboards();
-            Console.WriteLine("*************************************");
-            Console.WriteLine("*************************************");
-            Console.WriteLine("*************************************");
-
-            
+            //Motherboards();
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //Processors();
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //MBrands();
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //Console.WriteLine("*************************************");
+            //PBrands();
 
             Console.ReadLine();
         }
@@ -136,9 +143,11 @@ namespace ATQ1MR_HFT_2021221.Client
             //Get all
             var processors = httpService.GetAll<Processor>();
             DisplayProcessors(processors);
+            Console.WriteLine("************************************************\n");
             //Get one
             var processor = httpService.Get<Processor, int>(1);
             DisplayProcessor(processor);
+            Console.WriteLine("************************************************\n");
             //Create
             var newProcessor = new Processor() { Name = "Ryzen 7 3700X", BaseClock = 3.6, BoostClock = 4.4, BrandId = 2, 
                 Cores = 8, Threads = 16, Socket = "AM4", Price = 114000 };
@@ -147,9 +156,11 @@ namespace ATQ1MR_HFT_2021221.Client
             {
                 Console.WriteLine("Creation succsesfull!\n");
             }
+            Console.WriteLine("************************************************\n");
             //Check
             processors = httpService.GetAll<Processor>();
             DisplayProcessors(processors);
+            Console.WriteLine("************************************************\n");
             //Update
             var updateProcessor = processors.First();
             updateProcessor.Price = 110000;
@@ -158,9 +169,11 @@ namespace ATQ1MR_HFT_2021221.Client
             {
                 Console.WriteLine("Update succsesfull!\n");
             }
+            Console.WriteLine("************************************************\n");
             //Check
             processors = httpService.GetAll<Processor>();
             DisplayProcessors(processors);
+            Console.WriteLine("************************************************\n");
             //Delete
             httpService.Delete(processors.Last().Id);
             processors = httpService.GetAll<Processor>();
@@ -176,6 +189,116 @@ namespace ATQ1MR_HFT_2021221.Client
             foreach (var item in processors)
             {
                 DisplayProcessor(item);
+            }
+        }
+        private static void MBrands()
+        {
+            var httpService = new HttpService("MBrand", "http://localhost:51252/api/");
+
+            //Get all
+            var mBrands = httpService.GetAll<MBrand>();
+            DisplayMBrands(mBrands);
+            Console.WriteLine("************************************************\n");
+            //Get one
+            var mBrand = httpService.Get<MBrand, int>(1);
+            DisplayMBrand(mBrand);
+            Console.WriteLine("************************************************\n");
+            //Create
+            var newMBRand = new MBrand() { Name = "GIGABYTE" };
+            var result = httpService.Create(newMBRand);
+            if (result.IsSuccess)
+            {
+                Console.WriteLine("Creation succsesfull!");
+            }
+            Console.WriteLine("************************************************\n");
+            //Check
+            mBrands = httpService.GetAll<MBrand>();
+            DisplayMBrands(mBrands);
+            Console.WriteLine("************************************************\n");
+            //Update
+            var updateMBrand = mBrands.Last();
+            updateMBrand.Name = "ASROCK";
+            result = httpService.Update(updateMBrand);
+            if (result.IsSuccess)
+            {
+                Console.WriteLine("Update succsesfull!");
+            }
+            Console.WriteLine("************************************************\n");
+            //Check
+            mBrands = httpService.GetAll<MBrand>();
+            DisplayMBrands(mBrands);
+            Console.WriteLine("************************************************\n");
+            //Delete
+            httpService.Delete(mBrands.Last().Id);
+            //Check
+            mBrands = httpService.GetAll<MBrand>();
+            DisplayMBrands(mBrands);
+        }
+        private static void DisplayMBrand(MBrand mBrand)
+        {
+            Console.WriteLine(mBrand);
+        }
+        private static void DisplayMBrands(List<MBrand> mBrands)
+        {
+            Console.WriteLine();
+            foreach (var item in mBrands)
+            {
+                DisplayMBrand(item);
+            }
+        }
+        private static void PBrands()
+        {
+            var httpService = new HttpService("PBrand", "http://localhost:51252/api/");
+
+            //Get all
+            var pBrands = httpService.GetAll<PBrand>();
+            DisplayPBrands(pBrands);
+            Console.WriteLine("************************************************\n");
+            //Get one
+            var pBrand = httpService.Get<PBrand, int>(1);
+            DisplayPBrand(pBrand);
+            Console.WriteLine("************************************************\n");
+            //Create
+            var newPBrand = new PBrand() { Name = "Hygon" };
+            var result = httpService.Create(newPBrand);
+            if (result.IsSuccess)
+            {
+                Console.WriteLine("Creation succsesfull!");
+            }
+            Console.WriteLine("************************************************\n");
+            //Check
+            pBrands = httpService.GetAll<PBrand>();
+            DisplayPBrands(pBrands);
+            Console.WriteLine("************************************************\n");
+            //Update
+            var updatePBrand = pBrands.Last();
+            updatePBrand.Name = "Via";
+            result = httpService.Update(updatePBrand);
+            if (result.IsSuccess)
+            {
+                Console.WriteLine("Update succsesfull!");
+            }
+            Console.WriteLine("************************************************\n");
+            //Check
+            pBrands = httpService.GetAll<PBrand>();
+            DisplayPBrands(pBrands);
+            Console.WriteLine("************************************************\n");
+            //Delete
+            httpService.Delete(pBrands.Last().Id);
+            //Check
+            pBrands = httpService.GetAll<PBrand>();
+            DisplayPBrands(pBrands);
+        }
+        private static void DisplayPBrand(PBrand pBrand)
+        {
+            Console.WriteLine(pBrand);
+        }
+        private static void DisplayPBrands(List<PBrand> pBrands)
+        {
+            Console.WriteLine();
+            foreach (var item in pBrands)
+            {
+                DisplayPBrand(item);
             }
         }
     }

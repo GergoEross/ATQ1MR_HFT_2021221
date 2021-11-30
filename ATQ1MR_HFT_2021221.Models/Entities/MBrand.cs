@@ -23,6 +23,9 @@ namespace ATQ1MR_HFT_2021221.Models.Entities
         [JsonIgnore]
         [NotMapped]
         public virtual ICollection<Motherboard> Motherboards { get; set; }
-
+        public override string ToString()
+        {
+            return $"Id: {Id}\nName: {Name}\n";
+        }
     }
 }
