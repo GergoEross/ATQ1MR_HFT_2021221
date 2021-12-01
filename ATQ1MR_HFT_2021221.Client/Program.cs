@@ -243,6 +243,18 @@ namespace ATQ1MR_HFT_2021221.Client
             //Check
             mBrands = httpService.GetAll<MBrand>();
             DisplayMBrands(mBrands);
+            Console.WriteLine("************************************************\n");
+            //Get MBrands With Avarage Processor Prices
+            Console.WriteLine("MBrands with their average processor prices");
+            var mBrandsWithAverageProcessorPrices = httpService.GetAll<MBrandAverageProcessorPricesModel>("GetMBrandsWithAvarageProcessorPrices");
+            DisplayMBrandsWithAvarageProcessorPrices(mBrandsWithAverageProcessorPrices);
+        }
+        private static void DisplayMBrandsWithAvarageProcessorPrices(List<MBrandAverageProcessorPricesModel> list)
+        {
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
         private static void DisplayMBrand(MBrand mBrand)
         {

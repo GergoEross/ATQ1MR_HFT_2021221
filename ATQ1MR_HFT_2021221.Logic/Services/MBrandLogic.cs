@@ -1,6 +1,7 @@
 ﻿using ATQ1MR_HFT_2021221.Logic.Intefaces;
 using ATQ1MR_HFT_2021221.Models.Entities;
 using ATQ1MR_HFT_2021221.Repository.Interfaces;
+using ATQ1MR_HFT_2021221.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -82,6 +83,47 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
             {
                 throw new Exception("No entity found!");
             }
+        }
+        public IEnumerable<MBrandAverageProcessorPricesModel> MBrandsWithAvarageProcessorPrices()
+        {
+            var mBrands = _mBrandRepository.ReadAll().ToList();
+            var motherboards = _motherboardRepository.ReadAll().ToList();
+            var processors = _processorRepository.ReadAll().ToList();
+
+            
+            var procg = from processor in processors
+                        group processor by processor.Socket into g
+                        select new
+                        {
+                            Socket = g.Key,
+                            Prices = g.Select(x => x.Price)
+                        };
+            var mbavg = from mb in motherboards
+                        join proc in procg
+                        on mb.Socket equals proc.Socket
+                        select new
+                        {
+                            BrandId = mb.BrandId,
+                            Sum = proc.Prices.Sum(),
+                            Count = proc.Prices.Count()
+                        } into s
+                        group s by s.BrandId into g
+                        select new
+                        {
+                            BrandId = g.Key,
+                            Average = g.Select(x=>x.Sum).Sum()/(double)g.Select(x=>x.Count).Sum()
+                        };
+
+            var result = from mBrand in mBrands
+                         join mb in mbavg
+                         on mBrand.Id equals mb.BrandId
+                         select new MBrandAverageProcessorPricesModel
+                         {
+                             MBrandName = mBrand.Name,
+                             Average = mb.Average
+                         };
+
+            return result.ToList();
         }
     }
 }
