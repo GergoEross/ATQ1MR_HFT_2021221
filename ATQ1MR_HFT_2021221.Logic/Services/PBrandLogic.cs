@@ -74,7 +74,8 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                 var v = _pBrandRepository.Read(entity.Id);
                 if (v != null)
                 {
-                    var result = _pBrandRepository.Update(entity);
+                    v.Name = entity.Name;
+                    var result = _pBrandRepository.Update(v);
                     return result;
                 }
                 else

@@ -13,19 +13,19 @@ namespace ATQ1MR_HFT_2021221.Client
         {
             Console.WriteLine("Waiting for server...");
             Console.ReadLine();
-            //Motherboards();
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //Processors();
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //MBrands();
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //Console.WriteLine("*************************************");
-            //PBrands();
+            Motherboards();
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            Processors();
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            MBrands();
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            Console.WriteLine("*************************************");
+            PBrands();
 
             Console.ReadLine();
         }
@@ -103,8 +103,8 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayMotherboards(motherboards);
             Console.WriteLine("************************************************\n");
             //Update
-            Console.WriteLine("Update motherboard");
-            var updateMotherboard = motherboards.First();
+            Console.WriteLine("Update the created motherboards price");
+            var updateMotherboard = motherboards.Last();
             updateMotherboard.Price = 32000;
             result = mbHttpService.Update<Motherboard>(updateMotherboard);
             if (result.IsSuccess)
@@ -117,7 +117,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayMotherboards(motherboards);
             Console.WriteLine("************************************************\n");
             //Delete
-            Console.WriteLine("Delete motherboard");
+            Console.WriteLine("Delete updated motherboard");
             mbHttpService.Delete(motherboards.Last().Id);
             //Check
             motherboards = mbHttpService.GetAll<Motherboard>();
@@ -142,13 +142,16 @@ namespace ATQ1MR_HFT_2021221.Client
 
             //Get all
             var processors = httpService.GetAll<Processor>();
+            Console.WriteLine("All processors");
             DisplayProcessors(processors);
             Console.WriteLine("************************************************\n");
             //Get one
             var processor = httpService.Get<Processor, int>(1);
+            Console.WriteLine("Processor whit Id: 1");
             DisplayProcessor(processor);
             Console.WriteLine("************************************************\n");
             //Create
+            Console.WriteLine("Create new processor");
             var newProcessor = new Processor() { Name = "Ryzen 7 3700X", BaseClock = 3.6, BoostClock = 4.4, BrandId = 2, 
                 Cores = 8, Threads = 16, Socket = "AM4", Price = 114000 };
             var result = httpService.Create<Processor>(newProcessor);
@@ -162,7 +165,8 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayProcessors(processors);
             Console.WriteLine("************************************************\n");
             //Update
-            var updateProcessor = processors.First();
+            Console.WriteLine("Update created processor's price");
+            var updateProcessor = processors.Last();
             updateProcessor.Price = 110000;
             result = httpService.Update(updateProcessor);
             if (result.IsSuccess)
@@ -175,6 +179,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayProcessors(processors);
             Console.WriteLine("************************************************\n");
             //Delete
+            Console.WriteLine("Delete updated processor");
             httpService.Delete(processors.Last().Id);
             processors = httpService.GetAll<Processor>();
             DisplayProcessors(processors);
@@ -197,13 +202,16 @@ namespace ATQ1MR_HFT_2021221.Client
 
             //Get all
             var mBrands = httpService.GetAll<MBrand>();
+            Console.WriteLine("All MBrands");
             DisplayMBrands(mBrands);
             Console.WriteLine("************************************************\n");
             //Get one
             var mBrand = httpService.Get<MBrand, int>(1);
+            Console.WriteLine("MBrand whit Id: 1");
             DisplayMBrand(mBrand);
             Console.WriteLine("************************************************\n");
             //Create
+            Console.WriteLine("Create new MBrand");
             var newMBRand = new MBrand() { Name = "GIGABYTE" };
             var result = httpService.Create(newMBRand);
             if (result.IsSuccess)
@@ -216,6 +224,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayMBrands(mBrands);
             Console.WriteLine("************************************************\n");
             //Update
+            Console.WriteLine("Update created MBrand");
             var updateMBrand = mBrands.Last();
             updateMBrand.Name = "ASROCK";
             result = httpService.Update(updateMBrand);
@@ -229,6 +238,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayMBrands(mBrands);
             Console.WriteLine("************************************************\n");
             //Delete
+            Console.WriteLine("Delete updated MBrand");
             httpService.Delete(mBrands.Last().Id);
             //Check
             mBrands = httpService.GetAll<MBrand>();
@@ -252,13 +262,16 @@ namespace ATQ1MR_HFT_2021221.Client
 
             //Get all
             var pBrands = httpService.GetAll<PBrand>();
+            Console.WriteLine("All PBrands");
             DisplayPBrands(pBrands);
             Console.WriteLine("************************************************\n");
             //Get one
             var pBrand = httpService.Get<PBrand, int>(1);
+            Console.WriteLine("PBrand whit Id: 1");
             DisplayPBrand(pBrand);
             Console.WriteLine("************************************************\n");
             //Create
+            Console.WriteLine("Create new PBrand");
             var newPBrand = new PBrand() { Name = "Hygon" };
             var result = httpService.Create(newPBrand);
             if (result.IsSuccess)
@@ -271,6 +284,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayPBrands(pBrands);
             Console.WriteLine("************************************************\n");
             //Update
+            Console.WriteLine("Update created PBrand");
             var updatePBrand = pBrands.Last();
             updatePBrand.Name = "Via";
             result = httpService.Update(updatePBrand);
@@ -284,6 +298,7 @@ namespace ATQ1MR_HFT_2021221.Client
             DisplayPBrands(pBrands);
             Console.WriteLine("************************************************\n");
             //Delete
+            Console.WriteLine("Delete updated PBrand");
             httpService.Delete(pBrands.Last().Id);
             //Check
             pBrands = httpService.GetAll<PBrand>();

@@ -59,7 +59,12 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                 var v = _motherboardRepository.Read(entity.Id);
                 if (v != null)
                 {
-                    var result = _motherboardRepository.Update(entity);
+                    v.BrandId = entity.BrandId;
+                    v.Chipset = entity.Chipset;
+                    v.Price = entity.Price;
+                    v.Socket = entity.Socket;
+                    v.Type = entity.Type;
+                    var result = _motherboardRepository.Update(v);
                     return result;
                 }
                 else

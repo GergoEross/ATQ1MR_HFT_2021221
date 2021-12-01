@@ -57,7 +57,15 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
                 var v = _processorRepository.Read(entity.Id);
                 if (v != null)
                 {
-                    var result = _processorRepository.Update(entity);
+                    v.BaseClock = entity.BaseClock;
+                    v.BoostClock = entity.BoostClock;
+                    v.BrandId = entity.BrandId;
+                    v.Cores = entity.Cores;
+                    v.Name = entity.Name;
+                    v.Price = entity.Price;
+                    v.Socket = entity.Socket;
+                    v.Threads = entity.Threads;
+                    var result = _processorRepository.Update(v);
                     return result;
                 }
                 else
