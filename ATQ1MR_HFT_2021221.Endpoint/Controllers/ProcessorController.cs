@@ -91,5 +91,11 @@ namespace ATQ1MR_HFT_2021221.Endpoint.Controllers
 
             return result;
         }
+        // GET: api/Processor/GetProcessorsWhitHighestPriceMotherboard
+        [HttpGet]
+        public IEnumerable<ProcessorWhitHighestPriceMotherboardModel> GetProcessorsWhitHighestPriceMotherboard()
+        {
+            return processorLogic.ProcessorWhitHighestPriceMotherboard();
+        }
     }
 }

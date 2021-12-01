@@ -1,5 +1,6 @@
 ﻿using ATQ1MR_HFT_2021221.Logic.Intefaces;
 using ATQ1MR_HFT_2021221.Models.Entities;
+using ATQ1MR_HFT_2021221.Models.Models;
 using ATQ1MR_HFT_2021221.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,14 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
         IPBrandRepository _pBrandRepository;
         IMotherboardRepository _motherboardRepository;
         IProcessorRepository _processorRepository;
+        IMBrandRepository _mBrandRepository;
 
-        public ProcessorLogic(IPBrandRepository pBrandRepository, IMotherboardRepository motherboardRepository, IProcessorRepository processorRepository)
+        public ProcessorLogic(IPBrandRepository pBrandRepository, IMotherboardRepository motherboardRepository, IProcessorRepository processorRepository, IMBrandRepository mBrandRepository)
         {
             _pBrandRepository = pBrandRepository;
             _motherboardRepository = motherboardRepository;
             _processorRepository = processorRepository;
+            _mBrandRepository = mBrandRepository;
         }
 
         public IList<Processor> ReadAll()
@@ -89,6 +92,35 @@ namespace ATQ1MR_HFT_2021221.Logic.Services
             {
                 throw new Exception("No entity found!");
             }
+        }
+        public IEnumerable<ProcessorWhitHighestPriceMotherboardModel> ProcessorWhitHighestPriceMotherboard()
+        {
+            var motherboards = _motherboardRepository.ReadAll().ToList();
+            var processors = _processorRepository.ReadAll().ToList();
+            var mBrands = _mBrandRepository.ReadAll().ToList();
+
+            var mbg = from motherboard in motherboards
+                      group motherboard by motherboard.Socket into g
+                      select new
+                      {
+                          Sokcet = g.Key,
+                          Motherboard = g.Select(x => x).OrderByDescending(x => x.Price).First(),
+                          BrandId = g.Select(x => x).OrderByDescending(x => x.Price).First().BrandId
+                      };
+            var result = from proc in processors
+                         join mb in mbg
+                         on proc.Socket equals mb.Sokcet
+                         join mBrand in mBrands
+                         on mb.BrandId equals mBrand.Id
+                         select new ProcessorWhitHighestPriceMotherboardModel
+                         {
+                             Name = proc.Name,
+                             Type = mb.Motherboard.Type,
+                             Chipset = mb.Motherboard.Chipset,
+                             Brand = mBrand.Name,
+                             Price = mb.Motherboard.Price
+                         };
+            return result.ToList();
         }
     }
 }

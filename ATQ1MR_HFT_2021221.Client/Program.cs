@@ -183,6 +183,17 @@ namespace ATQ1MR_HFT_2021221.Client
             httpService.Delete(processors.Last().Id);
             processors = httpService.GetAll<Processor>();
             DisplayProcessors(processors);
+            //Get Processors Whit Highest Price Motherboard
+            Console.WriteLine("Processors with highest price motherboard");
+            var pwhpm = httpService.GetAll<ProcessorWhitHighestPriceMotherboardModel>("GetProcessorsWhitHighestPriceMotherboard");
+            DisplayProcessorsWhitHighestPriceMotherboard(pwhpm);
+        }
+        private static void DisplayProcessorsWhitHighestPriceMotherboard(List<ProcessorWhitHighestPriceMotherboardModel> list)
+        {
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
         private static void DisplayProcessor(Processor processor)
         {
