@@ -26,7 +26,7 @@ namespace ATQ1MR_HFT_2021221.Models.Models
         }
         public override string ToString()
         {
-            return $"Type: {Type}\nChipset: {Chipset}\nBrand: {Brand}\nAvarage: {Avarage}\n";
+            return $"Motherboard:{Brand} {Type} {Chipset}\nAvarage: {Avarage}\n";
         }
     }
 }

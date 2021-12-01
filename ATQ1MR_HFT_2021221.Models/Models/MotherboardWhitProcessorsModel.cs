@@ -32,7 +32,7 @@ namespace ATQ1MR_HFT_2021221.Models.Models
             {
                 result += "\n" + processor.ToString();
             }
-            return $"Type: {Type}\nChipset: {Chipset}\nBrand: {Brand}\nProcessors:{result}";
+            return $"Motherboard:{Brand} {Type} {Chipset}\nProcessors:{result}";
         }
     }
 }
